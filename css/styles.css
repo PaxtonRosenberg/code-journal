@@ -18,9 +18,29 @@ textarea {
   margin-bottom: 0.75rem;
 }
 
+label {
+  font-weight: bold;
+}
+
+input {
+  border: 0.5px solid black;
+}
+
 button {
-  display: block;
-  margin-right: 0;
+  color: white;
+  background-color: #562b81;
+  text-transform: uppercase;
+  border-radius: 0.25rem;
+}
+
+input:focus,
+textarea:focus {
+  border: 5px solid purple;
+  outline: none;
+}
+
+#notes {
+  height: 10rem;
 }
 
 .form-actions {
