@@ -7,3 +7,23 @@ header {
   color: white;
   border: 1px solid #562b81;
 }
+
+label,
+input,
+img,
+textarea {
+  display: block;
+  width: 100%;
+  border-radius: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+button {
+  display: block;
+  margin-right: 0;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+}
