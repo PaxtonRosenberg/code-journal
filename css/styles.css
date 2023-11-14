@@ -57,6 +57,10 @@ button:focus {
   border: 1px solid #562b81;
 }
 
+li {
+  list-style-type: none;
+}
+
 #notes {
   height: 10rem;
 }
