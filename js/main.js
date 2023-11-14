@@ -1,24 +1,4 @@
-/* exported data */
-
-let data = {
-  view: 'entry-form',
-  entries: [],
-  editing: null,
-  nextEntryId: 1,
-};
-
-window.addEventListener('beforeunload', function (event) {
-  const dataJSON = JSON.stringify(data);
-
-  localStorage.setItem('journal-entry', dataJSON);
-});
-
-const previousDataJSON = localStorage.getItem('journal-entry');
-
-if (previousDataJSON !== null) {
-  data = JSON.parse(previousDataJSON);
-}
-// end of data.js
+/* global data */
 
 const $photoUrl = document.getElementById('photo-url');
 
@@ -52,3 +32,11 @@ $form.addEventListener('submit', function (event) {
 
   $form.reset();
 });
+
+function renderEntry(entry) {
+  const $listItem = document.querySelector('li');
+
+  return $listItem;
+}
+
+console.log(renderEntry(data.entries[0]));
