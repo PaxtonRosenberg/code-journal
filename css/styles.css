@@ -20,10 +20,22 @@ textarea {
 
 label {
   font-weight: bold;
+  margin-bottom: 1rem;
 }
 
 input {
+  margin-bottom: 2.5rem;
+  height: 2rem;
+  background-color: white;
+}
+
+input,
+textarea {
   border: 0.5px solid black;
+}
+
+textarea {
+  text-align: left;
 }
 
 button {
@@ -31,12 +43,18 @@ button {
   background-color: #562b81;
   text-transform: uppercase;
   border-radius: 0.25rem;
+  margin-bottom: 0.75rem;
+  padding: 0.4rem;
 }
 
 input:focus,
 textarea:focus {
-  border: 5px solid purple;
+  border: 3px solid #562b81;
   outline: none;
+}
+
+button:focus {
+  border: 1px solid #562b81;
 }
 
 #notes {
