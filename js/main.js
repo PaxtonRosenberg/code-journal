@@ -39,4 +39,12 @@ function renderEntry(entry) {
   return $listItem;
 }
 
-console.log(renderEntry(data.entries[0]));
+const $ul = document.querySelector('ul');
+
+document.addEventListener('DOMContentLoaded', function (event) {
+  for (let i = 0; i < data.entries.length; i++) {
+    const $dataEntries = renderEntry(data.entries[i]);
+
+    $ul.appendChild($dataEntries);
+  }
+});
