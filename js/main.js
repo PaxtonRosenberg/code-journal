@@ -57,13 +57,23 @@ function renderEntry(entry) {
   $columnHalf2.setAttribute('class', 'column-half');
   $listItem.append($columnHalf2);
 
+  const $titleContainer = document.createElement('div');
+  $titleContainer.setAttribute('class', 'title-container');
+  $columnHalf2.append($titleContainer);
+
   const $title = document.createElement('h2');
   $title.textContent = entry.title;
-  $columnHalf2.append($title);
+  $titleContainer.appendChild($title);
+
+  const $pencil = document.createElement('i');
+  $pencil.setAttribute('class', 'fa-solid fa-pencil fa-lg');
+  $titleContainer.appendChild($pencil);
 
   const $notes = document.createElement('p');
   $notes.textContent = entry.notes;
   $columnHalf2.append($notes);
+
+  $listItem.setAttribute('data-entry-id', entry.entryID);
 
   return $listItem;
 }
