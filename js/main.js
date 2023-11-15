@@ -31,6 +31,14 @@ $form.addEventListener('submit', function (event) {
   $image.setAttribute('src', 'images/placeholder-image-square.jpg');
 
   $form.reset();
+
+  const newEntry = renderEntry(formObject);
+
+  $ul.prepend(newEntry);
+
+  toggleNoEntriesText();
+
+  viewSwap('entries');
 });
 
 function renderEntry(entry) {
@@ -60,8 +68,6 @@ function renderEntry(entry) {
   return $listItem;
 }
 
-renderEntry(data.entries[0]);
-
 const $ul = document.querySelector('ul');
 
 document.addEventListener('DOMContentLoaded', function (event) {
@@ -70,4 +76,51 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
     $ul.appendChild($dataEntries);
   }
+
+  const pageViewed = data.view;
+
+  viewSwap(pageViewed);
+
+  toggleNoEntriesText();
+});
+
+const $noEntriesText = document.querySelector('.no-entries');
+
+function toggleNoEntriesText() {
+  if (data.entries.length !== 0) {
+    $noEntriesText.className = 'hidden';
+  } else {
+    $noEntriesText.className = 'no-entries';
+  }
+}
+
+const $entriesView = document.querySelector('[data-view="entries"]');
+
+const $formView = document.querySelector('[data-view="entry-form"]');
+
+function viewSwap(view) {
+  if (view === 'entries') {
+    $entriesView.className = '';
+
+    $formView.className = 'hidden';
+  } else if (view === 'entry-form') {
+    $entriesView.className = 'hidden';
+
+    $formView.className = '';
+  }
+
+  data.view = view;
+}
+
+const $entriesToggle = document.querySelector('.entries-toggle');
+
+$entriesToggle.addEventListener('click', function () {
+  viewSwap('entries');
+  toggleNoEntriesText();
+});
+
+const $newEntryButton = document.querySelector('.new-entry-toggle');
+
+$newEntryButton.addEventListener('click', function () {
+  viewSwap('entry-form');
 });
