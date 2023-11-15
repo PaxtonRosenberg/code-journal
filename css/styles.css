@@ -98,10 +98,6 @@ p {
   cursor: pointer;
 }
 
-.form-toggle {
-  cursor: pointer;
-}
-
 .no-entries {
   text-align: center;
 }
@@ -120,8 +116,10 @@ p {
 }
 
 .fa-solid,
-.fa-pencil {
+.fa-pencil,
+.fa-lg {
   color: #562b81;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {

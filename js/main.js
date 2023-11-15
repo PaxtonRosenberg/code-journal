@@ -6,6 +6,12 @@ const $image = document.querySelector('img');
 
 const $form = document.getElementById('journal-entry');
 
+const $title = document.getElementById('title');
+
+const $notes = document.getElementById('notes');
+
+const $entryHeader = document.querySelector('.headline');
+
 $photoUrl.addEventListener('input', function (event) {
   $image.setAttribute('src', $photoUrl.value);
 });
@@ -133,4 +139,25 @@ const $newEntryButton = document.querySelector('.new-entry-toggle');
 
 $newEntryButton.addEventListener('click', function () {
   viewSwap('entry-form');
+});
+
+$ul.addEventListener('click', function (event) {
+  if (event.target.tagName === 'I') {
+    viewSwap('entry-form');
+
+    const clickedParent = event.target.closest('li');
+    const idValue = Number(clickedParent.getAttribute('data-entry-id'));
+
+    for (let i = 0; i < data.entries.length; i++) {
+      if (idValue === data.entries[i].entryID) {
+        data.editing = data.entries[i];
+
+        $image.setAttribute('src', data.entries[i].url);
+        $photoUrl.value = data.entries[i].url;
+        $title.value = data.entries[i].title;
+        $notes.textContent = data.entries[i].notes;
+        $entryHeader.textContent = 'Edit Entry';
+      }
+    }
+  }
 });
