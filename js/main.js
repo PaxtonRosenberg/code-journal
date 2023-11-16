@@ -214,3 +214,9 @@ const $deleteModalOverlay = document.querySelector('.overlay');
 $deleteEntry.addEventListener('click', function (event) {
   $deleteModalOverlay.className = 'overlay';
 });
+
+const $cancel = document.querySelector('.cancel');
+
+$cancel.addEventListener('click', function (event) {
+  $deleteModalOverlay.className = 'hidden';
+});
