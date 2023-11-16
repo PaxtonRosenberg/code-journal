@@ -1,0 +1,132 @@
+* {
+  box-sizing: border-box;
+}
+
+header {
+  background-color: #562b81;
+  color: white;
+  border: 1px solid #562b81;
+}
+
+a {
+  font-size: 1rem;
+  padding-left: 1.5rem;
+}
+
+label,
+input,
+img,
+textarea {
+  display: block;
+  width: 100%;
+  border-radius: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+input {
+  margin-bottom: 2.5rem;
+  height: 2rem;
+  background-color: white;
+}
+
+input,
+textarea {
+  border: 0.5px solid black;
+}
+
+textarea {
+  text-align: left;
+}
+
+button {
+  color: white;
+  background-color: #562b81;
+  text-transform: uppercase;
+  border-radius: 0.25rem;
+  margin-bottom: 0.75rem;
+  padding: 0.4rem;
+  width: 3.5rem;
+  cursor: pointer;
+}
+
+input:focus,
+textarea:focus {
+  border: 3px solid #562b81;
+  outline: none;
+}
+
+button:focus {
+  border: 1px solid #562b81;
+}
+
+li {
+  list-style-type: none;
+  margin-bottom: 2rem;
+}
+
+p {
+  margin-top: 2.5rem;
+}
+
+#notes {
+  height: 10rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.entries-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.entries-toggle {
+  cursor: pointer;
+}
+
+.no-entries {
+  text-align: center;
+}
+
+.new-entry-toggle {
+  background-color: #562b81;
+  border: 1px solid #562b81;
+  color: white;
+  text-align: center;
+  border-radius: 0.25rem;
+  padding: 0.4rem;
+  width: 3.5rem;
+  font-weight: lighter;
+  margin-left: auto;
+  height: 2rem;
+  cursor: pointer;
+}
+
+.fa-solid,
+.fa-pencil,
+.fa-lg {
+  color: #562b81;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .list-display {
+    max-width: 900px;
+    display: flex;
+  }
+}
