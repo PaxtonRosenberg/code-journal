@@ -7,6 +7,7 @@ const $title = document.getElementById('title');
 const $notes = document.getElementById('notes');
 const $entryHeader = document.querySelector('.headline');
 let liToReplace;
+const $deleteEntry = document.querySelector('.delete');
 
 $photoUrl.addEventListener('input', function (event) {
   $image.setAttribute('src', $photoUrl.value);
@@ -54,12 +55,13 @@ $form.addEventListener('submit', function (event) {
         }
       }
       liToReplace.replaceWith(updatedLi);
-      console.log(updatedLi);
     }
     $entryHeader.textContent = 'New Entry';
 
     data.editing = null;
   }
+
+  $deleteEntry.className = 'hidden';
 
   viewSwap('entries');
 
@@ -141,10 +143,26 @@ function viewSwap(view) {
     $entriesView.className = '';
 
     $formView.className = 'hidden';
+
+    $image.setAttribute('src', 'images/placeholder-image-square.jpg');
+
+    $entryHeader.textContent = 'New Entry';
+
+    $deleteEntry.className = 'hidden';
+
+    $form.reset();
   } else if (view === 'entry-form') {
     $entriesView.className = 'hidden';
 
     $formView.className = '';
+
+    $image.setAttribute('src', 'images/placeholder-image-square.jpg');
+
+    $entryHeader.textContent = 'New Entry';
+
+    $deleteEntry.className = 'hidden';
+
+    $form.reset();
   }
 
   data.view = view;
@@ -184,6 +202,8 @@ $ul.addEventListener('click', function (event) {
         $notes.value = data.entries[i].notes;
 
         $entryHeader.textContent = 'Edit Entry';
+
+        $deleteEntry.className = 'delete';
       }
     }
   }

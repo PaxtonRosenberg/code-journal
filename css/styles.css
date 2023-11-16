@@ -46,7 +46,6 @@ textarea {
 button {
   color: white;
   background-color: #562b81;
-  text-transform: uppercase;
   border-radius: 0.25rem;
   margin-bottom: 0.75rem;
   padding: 0.4rem;
@@ -77,10 +76,28 @@ p {
   height: 10rem;
 }
 
+.delete {
+  color: #dc2626;
+  text-decoration: underline;
+  background-color: white;
+  border: none;
+  width: 175px;
+  font-size: 14px;
+  margin-right: auto;
+  padding: 0;
+  text-align: left;
+}
+
 .form-actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
+  padding-top: 25px;
+}
+
+.save-button {
+  margin-left: auto;
 }
 
 .entries-container {
