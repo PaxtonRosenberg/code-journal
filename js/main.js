@@ -208,3 +208,9 @@ $ul.addEventListener('click', function (event) {
     }
   }
 });
+
+const $deleteModalOverlay = document.querySelector('.overlay');
+
+$deleteEntry.addEventListener('click', function (event) {
+  $deleteModalOverlay.className = 'overlay';
+});
