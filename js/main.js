@@ -1,16 +1,12 @@
 /* global data */
 
 const $photoUrl = document.getElementById('photo-url');
-
 const $image = document.querySelector('img');
-
 const $form = document.getElementById('journal-entry');
-
 const $title = document.getElementById('title');
-
 const $notes = document.getElementById('notes');
-
 const $entryHeader = document.querySelector('.headline');
+let liToReplace;
 
 $photoUrl.addEventListener('input', function (event) {
   $image.setAttribute('src', $photoUrl.value);
@@ -27,24 +23,51 @@ $form.addEventListener('submit', function (event) {
     title: $title,
     url: $photo,
     notes: $notes,
-    entryID: data.nextEntryId,
   };
 
-  data.nextEntryId++;
+  if (data.editing === null) {
+    formObject.entryId = data.nextEntryId;
 
-  data.entries.unshift(formObject);
+    data.entries.unshift(formObject);
+
+    data.nextEntryId++;
+
+    const newEntry = renderEntry(formObject);
+
+    $ul.prepend(newEntry);
+  } else {
+    formObject.entryId = data.editing.entryId;
+
+    for (let i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].entryId === formObject.entryId) {
+        data.entries[i] = formObject;
+      }
+      const $lis = document.querySelectorAll('li');
+
+      const updatedLi = renderEntry(formObject);
+
+      for (let x = 0; x < $lis.length; x++) {
+        const currentEntryId = Number($lis[x].getAttribute('data-entry-id'));
+
+        if (currentEntryId === formObject.entryId) {
+          liToReplace = $lis[x];
+        }
+      }
+      liToReplace.replaceWith(updatedLi);
+      console.log(updatedLi);
+    }
+    $entryHeader.textContent = 'New Entry';
+
+    data.editing = null;
+  }
+
+  viewSwap('entries');
 
   $image.setAttribute('src', 'images/placeholder-image-square.jpg');
 
   $form.reset();
 
-  const newEntry = renderEntry(formObject);
-
-  $ul.prepend(newEntry);
-
   toggleNoEntriesText();
-
-  viewSwap('entries');
 });
 
 function renderEntry(entry) {
@@ -79,7 +102,7 @@ function renderEntry(entry) {
   $notes.textContent = entry.notes;
   $columnHalf2.append($notes);
 
-  $listItem.setAttribute('data-entry-id', entry.entryID);
+  $listItem.setAttribute('data-entry-id', entry.entryId);
 
   return $listItem;
 }
@@ -111,7 +134,6 @@ function toggleNoEntriesText() {
 }
 
 const $entriesView = document.querySelector('[data-view="entries"]');
-
 const $formView = document.querySelector('[data-view="entry-form"]');
 
 function viewSwap(view) {
@@ -132,6 +154,7 @@ const $entriesToggle = document.querySelector('.entries-toggle');
 
 $entriesToggle.addEventListener('click', function () {
   viewSwap('entries');
+
   toggleNoEntriesText();
 });
 
@@ -149,13 +172,17 @@ $ul.addEventListener('click', function (event) {
     const idValue = Number(clickedParent.getAttribute('data-entry-id'));
 
     for (let i = 0; i < data.entries.length; i++) {
-      if (idValue === data.entries[i].entryID) {
+      if (idValue === data.entries[i].entryId) {
         data.editing = data.entries[i];
 
         $image.setAttribute('src', data.entries[i].url);
+
         $photoUrl.value = data.entries[i].url;
+
         $title.value = data.entries[i].title;
-        $notes.textContent = data.entries[i].notes;
+
+        $notes.value = data.entries[i].notes;
+
         $entryHeader.textContent = 'Edit Entry';
       }
     }

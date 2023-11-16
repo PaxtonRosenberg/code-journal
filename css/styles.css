@@ -51,6 +51,7 @@ button {
   margin-bottom: 0.75rem;
   padding: 0.4rem;
   width: 3.5rem;
+  cursor: pointer;
 }
 
 input:focus,
@@ -113,6 +114,7 @@ p {
   font-weight: lighter;
   margin-left: auto;
   height: 2rem;
+  cursor: pointer;
 }
 
 .fa-solid,
