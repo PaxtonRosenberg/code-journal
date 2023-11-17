@@ -44,7 +44,7 @@
             </div>
           </div>
           <div class="form-actions column-full">
-            <button class="hidden delete">Delete Entry</button>
+            <button class="hidden delete" type="button">Delete Entry</button>
             <button class="save-button" type="submit">SAVE</button>
           </div>
         </form>
@@ -57,22 +57,22 @@
         <p class="no-entries">No entries have been recorded</p>
         <ul></ul>
       </div>
-      <div class="hidden overlay">
-        <div class="popup">
+    </main>
+    <div class="hidden overlay">
+      <div class="popup">
+        <div>
+          <h3>Are you sure you want to delete this entry?</h3>
+        </div>
+        <div class="modal-container">
           <div>
-            <h3>Are you sure you want to delete this entry?</h3>
+            <button class="cancel">CANCEL</button>
           </div>
-          <div class="modal-container">
-            <div>
-              <button class="cancel">CANCEL</button>
-            </div>
-            <div>
-              <button class="confirm">CONFIRM</button>
-            </div>
+          <div>
+            <button class="confirm">CONFIRM</button>
           </div>
         </div>
       </div>
-    </main>
+    </div>
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
   </body>

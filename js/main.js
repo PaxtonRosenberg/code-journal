@@ -7,6 +7,7 @@ const $title = document.getElementById('title');
 const $notes = document.getElementById('notes');
 const $entryHeader = document.querySelector('.headline');
 let liToReplace;
+let liToDelete;
 const $deleteEntry = document.querySelector('.delete');
 
 $photoUrl.addEventListener('input', function (event) {
@@ -185,7 +186,6 @@ $newEntryButton.addEventListener('click', function () {
 $ul.addEventListener('click', function (event) {
   if (event.target.tagName === 'I') {
     viewSwap('entry-form');
-
     const clickedParent = event.target.closest('li');
     const idValue = Number(clickedParent.getAttribute('data-entry-id'));
 
@@ -219,4 +219,45 @@ const $cancel = document.querySelector('.cancel');
 
 $cancel.addEventListener('click', function (event) {
   $deleteModalOverlay.className = 'hidden';
+
+  $entryHeader.textContent = 'Edit Entry';
+
+  $deleteEntry.className = 'delete';
+});
+
+const $confirm = document.querySelector('.confirm');
+
+$confirm.addEventListener('click', function (event) {
+  viewSwap('entries');
+
+  $deleteModalOverlay.className = 'hidden';
+
+  for (let i = 0; i < data.entries.length; i++) {
+    if (data.entries[i].entryId === data.editing.entryId) {
+      data.entries[i] = data.editing;
+    }
+    const $lis = document.querySelectorAll('li');
+
+    for (let x = 0; x < $lis.length; x++) {
+      const currentEntryId = Number($lis[x].getAttribute('data-entry-id'));
+
+      if (currentEntryId === data.editing.entryId) {
+        liToDelete = $lis[x];
+      }
+    }
+    liToDelete.remove();
+  }
+  $entryHeader.textContent = 'New Entry';
+
+  data.editing = null;
+
+  $deleteEntry.className = 'hidden';
+
+  viewSwap('entries');
+
+  $image.setAttribute('src', 'images/placeholder-image-square.jpg');
+
+  $form.reset();
+
+  toggleNoEntriesText();
 });
